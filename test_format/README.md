@@ -78,13 +78,13 @@ Install required SDK and libraries
 ==============
 - 32 bit SDL(simple directmedia layer) 
 Use apt-get
-    sudo apt-get install libsdl2-dev:i386
-Or, install from source</br>
-    www.libsdl.org
+    sudo apt-get install libsdl2-dev:i386<br>
+Or, install from source   
 <pre>
-`./configure C_FLAGS=-m32 CXX_FLAGS=-m32 LD_FLAGS=-m32`
- ` make`
-`sudo make install`
+   Download source from www.libsdl.org
+    `./configure C_FLAGS=-m32 CXX_FLAGS=-m32 LD_FLAGS=-m32`
+     ` make`
+    `sudo make install`
 </pre>
 - Install EMSDK
     https://emscripten.org/docs/tools_reference/emsdk.html
@@ -103,7 +103,7 @@ Build and run on Linux
 <pre>
 `./vgl_native_ui_app`
 <img src="./UI.JPG">
-The number on top will plus one each second, and he number on the bottom will plus one when clicked.
+The number on top will plus one each second, and the number on the bottom will plus one when clicked.
 </pre>
 - Run WASM VM Linux applicaton & install WASM APP
 <pre>
@@ -127,12 +127,13 @@ WASM VM and native extension method can be built into zephyr, Then we can instal
  c. create a link to wamr core
    ` ln -s <iwasm_root_dir>/core core`
  d. build source code
-Since ui_app incorporated littlevgl source code, so it need more RAM on device to install it.
-It is recommended that RAM SIZE greater than 512KB.
-In our test use nucleo_f767zi, which are not supported by zephyr.
-However nucleo_f767zi is almost the same as nucleo_f746zg, except FLASH and SRAM size.
-So we changed the DTS setting of nucleo_f746zg boards for workaround.
-`Modify zephyr/dts/arm/st/f7/stm32f746xg.dtsi, change DT_SIZE_K(320) to DT_SIZE_K(512)`
+    Since ui_app incorporated littlevgl source code, so it need more RAM on device to install it.
+    It is recommended that RAM SIZE greater than 512KB.
+    In our test use nucleo_f767zi, which are not supported by zephyr.
+    However nucleo_f767zi is almost the same as nucleo_f746zg, except FLASH and SRAM size.
+    So we changed the DTS setting of nucleo_f746zg boards for workaround.
+
+    `Modify zephyr/dts/arm/st/f7/stm32f746xg.dtsi, change DT_SIZE_K(320) to DT_SIZE_K(512)`
     `mkdir build && cd build`
     `source ../../../../zephyr-env.sh`
     `cmake -GNinja -DBOARD=nucleo_f746zg ..`
@@ -167,5 +168,5 @@ Hardware Connetions
 </pre>
 - Install wasm app to zephyr using host_tool
 First connect PC and STM32 with UART. Then install use host_tool.
-`./host_tool -D /dev/ttyUSBXXX -i TestApplet1 -f TestApplet1.wasm`
+`./host_tool -D /dev/ttyUSBXXX -i ui_app -f ui_app.wasm`
 
