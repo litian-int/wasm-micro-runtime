@@ -76,9 +76,7 @@ Directory structure
 
 Install required SDK and libraries
 ==============
-
-1. 32 bit SDL(simple directmedia layer) 
---------------------------------
+- 32 bit SDL(simple directmedia layer) 
 Use apt-get
     sudo apt-get install libsdl2-dev:i386
 Or, install from source</br>
@@ -88,9 +86,9 @@ Or, install from source</br>
  ` make`
 `sudo make install`
 </pre>
-2. Install EMSDK
+- Install EMSDK
     https://emscripten.org/docs/tools_reference/emsdk.html
-3. Cmake
+- Cmake
      CMAKE version above 3.13.1.
 
 Build & Run
@@ -98,15 +96,16 @@ Build & Run
 
 Build and run on Linux
 --------------------------------
-1. Build
+- Build
 `./build.sh`
     All binaries are in "out", which contains "host_tool", "vgl_native_ui_app", "TestApplet1.wasm" and "vgl_wasm_runtime".
-2. Run native Linux application
-</pre>
+- Run native Linux application
+<pre>
 `./vgl_native_ui_app`
 <img src="./UI.JPG">
-<pre>
-3. Run WASM VM Linux applicaton & install WASM APP
+The number on top will plus one each second, and he number on the bottom will plus one when clicked.
+</pre>
+- Run WASM VM Linux applicaton & install WASM APP
 <pre>
  First start vgl_wasm_runtime in server mode.
 `./vgl_wasm_runtime -s`
@@ -117,7 +116,7 @@ Build and run on Linux
 Build and run on zephyr
 --------------------------------
 WASM VM and native extension method can be built into zephyr, Then we can install wasm app into STM32.
-1. Build wasm into Zephyr system
+- Build wasm into Zephyr system
 <pre>
  a. clone zephyr source code
 `git clone https://github.com/zephyrproject-rtos/zephyr.git`
@@ -139,7 +138,7 @@ So we changed the DTS setting of nucleo_f746zg boards for workaround.
     `cmake -GNinja -DBOARD=nucleo_f746zg ..`
    ` ninja flash`
 </pre>
-2. Test on STM32 NUCLEO_F767ZI with ILI9341 Display with XPT2046 touch.
+- Test on STM32 NUCLEO_F767ZI with ILI9341 Display with XPT2046 touch.
 Hardware Connetions
 <pre>
 +-------------------+-+------------------+
@@ -166,7 +165,7 @@ Hardware Connetions
 | CN11.16             | PC UART RX       |
 +-------------------+-+------------------+
 </pre>
-3. Install wasm app to zephyr using host_tool
+- Install wasm app to zephyr using host_tool
 First connect PC and STM32 with UART. Then install use host_tool.
 `./host_tool -D /dev/ttyUSBXXX -i TestApplet1 -f TestApplet1.wasm`
 
