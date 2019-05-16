@@ -77,15 +77,13 @@ Directory structure
 Install required SDK and libraries
 ==============
 - 32 bit SDL(simple directmedia layer)
-<pre>
-Use apt-get
-    sudo apt-get install libsdl2-dev:i386
-Or, install from source  
-   Download source from www.libsdl.org
-    ./configure C_FLAGS=-m32 CXX_FLAGS=-m32 LD_FLAGS=-m32
-     make
-    sudo make install
-</pre>
+Use apt-get</br>
+    `sudo apt-get install libsdl2-dev:i386`</br>
+Or, install from source</br>
+   Download source from www.libsdl.org</br>
+    `./configure C_FLAGS=-m32 CXX_FLAGS=-m32 LD_FLAGS=-m32`
+    `make`</br>
+    `sudo make install`</br>
 - Install EMSDK
 <pre>
     https://emscripten.org/docs/tools_reference/emsdk.html
@@ -101,33 +99,32 @@ Build & Run
 Build and run on Linux
 --------------------------------
 - Build</br>
-`./build.sh`
+`./build.sh`</br>
     All binaries are in "out", which contains "host_tool", "vgl_native_ui_app", "TestApplet1.wasm" and "vgl_wasm_runtime".
 - Run native Linux application</br>
-`./vgl_native_ui_app`
+`./vgl_native_ui_app`</br>
 <pre>
 <img src="./UI.JPG">
 The number on top will plus one each second, and the number on the bottom will plus one when clicked.
 </pre>
 - Run WASM VM Linux applicaton & install WASM APP</br>
  First start vgl_wasm_runtime in server mode.</br>
-`./vgl_wasm_runtime -s`
+`./vgl_wasm_runtime -s`</br>
  Then install wasm APP use host tool.</br>
-`./host_tool -i TestApplet1 -f TestApplet1.wasm`
-
+`./host_tool -i TestApplet1 -f TestApplet1.wasm`</br>
 
 Build and run on Zephyr
 --------------------------------
-WASM VM and native extension method can be built into Zephyr, Then we can install wasm app into STM32.
+WASM VM and native extension method can be built into Zephyr, Then we can install wasm app into STM32.</br>
 - Build WASM VM into Zephyr system</br>
  a. clone zephyr source code</br>
-`git clone https://github.com/zephyrproject-rtos/zephyr.git`
+`git clone https://github.com/zephyrproject-rtos/zephyr.git`</br>
  b. copy samples</br>
     `cd zephyr/samples/`
     `cp -a <iwasm_root_dir>samples/littlevgl/vgl-wasm-runtime vgl-wasm-runtime`
-    `cd vgl-wasm-runtime/zephyr_build`
+    `cd vgl-wasm-runtime/zephyr_build`</br>
  c. create a link to wamr core</br>
-   ` ln -s <iwasm_root_dir>/core core`
+   ` ln -s <iwasm_root_dir>/core core`</br>
  d. build source code</br>
     Since ui_app incorporated LittlevGL source code, so it needs more RAM on the device to install the application.
     It is recommended that RAM SIZE greater than 512KB.
@@ -135,11 +132,11 @@ WASM VM and native extension method can be built into Zephyr, Then we can instal
     However, nucleo_f767zi is almost the same as nucleo_f746zg, except FLASH and SRAM size.
     So we changed the DTS setting of nucleo_f746zg boards for a workaround.</br>
 
-    `Modify zephyr/dts/arm/st/f7/stm32f746xg.dtsi, change DT_SIZE_K(320) to DT_SIZE_K(512)`
-    `mkdir build && cd build`
-    `source ../../../../zephyr-env.sh`
-    `cmake -GNinja -DBOARD=nucleo_f746zg ..`
-   ` ninja flash`
+    `Modify zephyr/dts/arm/st/f7/stm32f746xg.dtsi, change DT_SIZE_K(320) to DT_SIZE_K(512)`</br>
+    `mkdir build && cd build`</br>
+    `source ../../../../zephyr-env.sh`</br>
+    `cmake -GNinja -DBOARD=nucleo_f746zg ..`</br>
+   ` ninja flash`</br>
 
 - Test on STM32 NUCLEO_F767ZI with ILI9341 Display with XPT2046 touch</br>
 Hardware Connections
@@ -169,6 +166,6 @@ Hardware Connections
 +-------------------+-+------------------+
 </pre>
 - Install WASM application to Zephyr using host_tool</br>
-First, connect PC and STM32 with UART. Then install to use host_tool.
+First, connect PC and STM32 with UART. Then install to use host_tool.</br>
 `./host_tool -D /dev/ttyUSBXXX -i ui_app -f ui_app.wasm`
 
